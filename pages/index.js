@@ -19,7 +19,7 @@ const steps = [
     year: 2450,
     yearText: '24??',
     event: "Terraforming Mars",
-    question: `What is the minimum and temperature required to make Mars habitable?`,
+    question: `What is the minimum temperature required to make Mars habitable?`,
     answerType: 'text',
     answers: [
       '8',
@@ -28,7 +28,7 @@ const steps = [
       '8 degrees celsius',
       '8°C'
     ],
-    placeholder: 'Interview question #8 of Kelvinist Party.'
+    placeholder: 'Interview question #1 of Kelvinist Party.'
   },
   {
     type: 'question',
