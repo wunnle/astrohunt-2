@@ -26,10 +26,11 @@
 }
 
 .footer {
-  height: 140px;
+  height: 60px;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
   padding: 5px 8px;
   width: 100%;
 }
@@ -277,7 +278,11 @@
 
 .form.visible, .question.visible {
   opacity: 1;
-  transition: opacity 3s cubic-bezier(0, 1.45, 1, 1);
+  transition: opacity 4s cubic-bezier(0, 1.45, 1, 1);
+}
+
+.form {
+  transition-delay: 2s;
 }
 
 

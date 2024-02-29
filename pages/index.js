@@ -4,110 +4,134 @@ import { useEffect, useRef, useState } from 'react'
 import { Exo_2 } from 'next/font/google'
 import AstroHuntLogo from '@/components/AstrohuntLogo'
 import SurpriseIcon from '@/components/SurpriseIcon'
-import EventIcon from '@/components/EventIcon'
 import DownloadIcon from '@/components/DownloadIcon'
 import CheckIcon from '@/components/CheckIcon'
+import Timeline from '@/components/Timeline'
 
 const exo = Exo_2({ 
-  weight: ['300', '400'],
+  weight: ['300', '400', '500'],
   subsets: ['latin']
  })
 
 const steps = [
   {
     type: 'question',
-    question: `Oye sésata, keting im da nem fo mosh bik beltalowda seteshang?`,
+    year: 2450,
+    yearText: '24??',
+    event: "Terraforming Mars",
+    question: `What is the target temperature to make Mars habitable?`,
     answerType: 'text',
     answers: [
-      'Eros',
-      'eros',
-      'EROS',
-      'Eros Station',
-      'eros station',
-      'Eros station',
-      'ceres',
-      'Ceres',
-      'CERES',
-      'Ceres Station',
-      'ceres station',
+      '8',
+      '+8',
+      '8 degrees',
+      '8 degrees celsius',
+      '8°C'
     ],
     placeholder: 'Seteshang im "statión", sa-sa ke?'
   },
   {
     type: 'question',
-    question: 'Galaksimizin adı nedir?',
+    year: 2050,
+    yearText: 'Year 8 - Crisis Era',
+    event: "Three Body Problem",
+    question: 'Who is the wallbreaker of Lou Ji?',
     answerType: 'text',
     answers: [
-      'hanifi tokgözoğlu',
-      'Hanifi Tokgözoğlu',
-      'hanifi tokgozoglu',
-      'Hanifi Tokgozoglu',
-      'Hanifi tokgozoglu',
-      'hanifi Tokgozoglu',
+      'Lou Ji',
+      'lou ji',
+      'himself',
+      'Himself'
     ],
     placeholder: 'İki kelime, hayli yerli...'
   },
   {
     type: 'question',
-    question: `The deadline for the job is a year away, so I can't procrastinate even one day. Where am I from?`,
+    year: 1974,
+    yearText: '1974',
+    event: "For All Mankind",
+    question: `How did crew of Apollo 22 greet each other frequently?`,
     answerType: 'text',
     answers: [
-      "Venus",
-      "venus"
+      "Hi, bob",
+      "hi, bob",
+      "Hi Bob",
+      "hi Bob",
+      "Hi, Bob!",
+      "hi, Bob!",
+      "Hi Bob!",
+      "hi Bob!",
+      'hi bob',
+      'hey bob',
+      'Hey Bob',
+      'Hey, Bob',
+      'hey, bob',
+      'hey, Bob',
     ],
-    placeholder: 'Gotta go before sun sets in the east...'
+    placeholder: 'Based on a tv show, based on a tv show...'
   },
   {
     type: 'question',
-    question: 'Uzay tersaneleriyle meşhur, güneş sistemindeki en yüksek dağa sahip kütlenin adı nedir?',
+    year: 1967,
+    yearText: '1967',
+    event: "Kutná Hora",
+    question: 'Built from the 14th to the 19th century, this building in Kutná Hora  blends late Gothic and Renaissance architectural styles. What is its name?',
     answerType: 'text',
     answers: [
-      "Vesta",
-      "vesta",
-      "4 Vesta",
-      "4 vesta",
-      "4 Vesta",
-      "VESTA"
+      "St. Barbara's Church",
+      "St. Barbara's church",
+      "St Barbara's Church",
+      "St Barbara's church",
+      "St. Barbara",
+      "St Barbara",
+      "St. Barbara's",
+      "st. barbara",
+      "st barbara",
     ],
-    placeholder: 'Titanyum üretimini de arttırdığı söylenir...'
+    placeholder: 'Manken olan...'
   },
   {
     type: 'question',
-    question: "What's the name of  the system unpredictably cycles between stable and chaotic eras?",
+    year: 1770,
+    yearText: '1770',
+    question: "What is the name of the society where thinkers and industrialists regularly gathered in Birmingham under the full moon during the Industrial Revolution?",
+    event: "Brass: Birmingham",
     answerType: 'text',
     answers: [
-      "Alpha Centauri",
-      "alpha centauri",
-      "Trisolaris",
-      "trisolaris"
+      'Lunar Society',
+      'lunar society',
+      'Lunar society',
+      'Lunar',
+      'The Lunar Society',
+      'the lunar society'
     ],
-    placeholder: 'There is also a VR game about it...'
+    placeholder: 'Two characters from the game in the society...'
+  },
+  {
+    type: 'question',
+    year: 800,
+    yearText: '800',
+    event: "Catan",
+    question: "What is the name of the ancient 'Longest Road' that connected diverse regions for the exchange of goods and cultures for centuries?",
+    answerType: 'text',
+    answers: [
+      "Silk Road",
+      "silk road",
+      "Silk",
+      "silk"
+    ],
+    placeholder: 'The longest road...'
   },
   { 
     type: 'notification',
+    year: 300,
+    event: "???",
+    yearText: '????',
     title: `Good job! You've unlocked your gift`,
     description: 'Find it behind the Terraforming Mars box',
     action: 'goToNextStep',
     icon: SurpriseIcon
-  },
-  {
-    type: 'question',
-    question: 'İşçi dostuyum, anahtarım ve bir sistemim var. Kaç yaşındayım?',
-    answerType: 'number',
-    answerRange: {
-      min: 4500000000,
-      max: 5000000000
-    },
-    placeholder: 'Sadece sayıyla cevap ver...'
-  },
-  { 
-    type: 'notification',
-    title: `You've unlocked an event invite!`,
-    description: "Download it and make sure you show up.",
-    buttonText: 'Download',
-    action: 'downloadInvite',
-    icon: EventIcon
-  },
+  }
 ]
 
 
@@ -116,29 +140,45 @@ export default function Home() {
   const mainInputRef = useRef(null)
   const [activeStep, setActiveStep] = useState(0);
 
-  const [formClassName, setFormClassName] = useState(styles.visible);
-  const [questionClassName, setQuestionClassName] = useState(styles.visible);
+  const [formClassName, setFormClassName] = useState(styles.invisible);
+  const [questionClassName, setQuestionClassName] = useState(styles.invisible);
   
   const [inputText, setInputText] = useState('');
 
   useEffect(() => {
-    mainInputRef.current?.focus()
+    setTimeout(() => {
+      setFormClassName(styles.visible);
+      setQuestionClassName(styles.visible);
+      mainInputRef.current?.focus();
+    }, 3000)
   }, [])
 
+
   function switchToNextQuestion() {
+
+    var audio = new Audio('/audio/new.mp3');
+
+
     setActiveStep(activeStep + 1);
     setInputText('');
     mainInputRef.current?.blur();
     setFormClassName(styles.invisible);
     setQuestionClassName(styles.invisible);
+    audio.currentTime = 0.58
+    audio.play();
+
     setTimeout(() => {
       setFormClassName(styles.visible);
       setQuestionClassName(styles.visible);
       mainInputRef.current?.focus();
-    }, 100)
+    }, 2200)
   }
 
   function showErrorMessage() {
+    var audio = new Audio('/audio/error.mp3');
+    audio.currentTime = 0.58
+    audio.play();
+
     setInputText('')
     setFormClassName(styles.error)
     setTimeout(() => {
@@ -180,11 +220,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <header className={styles.header}>
-          <AstroHuntLogo className={styles.logo} />
-          <p className={styles.level}>
-            <span className={[styles.questionNumber, exo.className].join(' ')}
-            >STEP {activeStep + 1} / {steps.length}</span>
-          </p>
+          <Timeline steps={steps} activeStep={activeStep} />
         </header>
         {steps[activeStep].type === 'question' && (
         <div className={styles.center}>
@@ -231,6 +267,7 @@ export default function Home() {
           </div>
         )}
         <footer className={styles.footer}>
+          <AstroHuntLogo className={styles.logo} />
           <div className={[styles.footerInner, exo.className].join(' ')}>
           Coded with ♥ for Başak - 2023 
           </div>
