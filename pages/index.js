@@ -154,23 +154,26 @@ export default function Home() {
 
 
   function switchToNextQuestion() {
-
     var audio = new Audio('/audio/new.mp3');
 
-
-    setActiveStep(activeStep + 1);
-    setInputText('');
+    
     mainInputRef.current?.blur();
-    setFormClassName(styles.invisible);
+    //setFormClassName(styles.invisible);
+    setFormClassName(styles.correct)
     setQuestionClassName(styles.invisible);
     audio.currentTime = 0.58
     audio.play();
 
     setTimeout(() => {
+      setActiveStep(activeStep + 1);
+    }, 1500)
+
+    setTimeout(() => {
+      setInputText('');
       setFormClassName(styles.visible);
       setQuestionClassName(styles.visible);
       mainInputRef.current?.focus();
-    }, 2200)
+    }, 4000)
   }
 
   function showErrorMessage() {

@@ -82,6 +82,7 @@
   align-items: center;
   position: relative;
   padding: 40px;
+  padding-bottom: 150px;
   max-width: 100%;
 }
 
@@ -223,7 +224,7 @@
   border-radius: 12px;
   border: none;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  transition: border 0.12s ease-in-out;
+  transition: border 0.12s ease-in-out, opacity 0.5s ease-in-out;
   box-shadow:  0 0 40px 10px rgba(0, 0, 0, 0.25);
   filter: drop-shadow(0 0 0.3rem  rgba(0, 0, 0, 0.25));
   display: flex;
@@ -231,11 +232,22 @@
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 1);
   background-size: 30px;
+  transition-delay: 0.8s;
+
 }
 
 .form:focus-within {
   border-color: rgba(255, 255, 255, 0.80);
   background-image: url('../public/enter.svg');
+}
+
+.form.correct {
+  opacity: 0;
+  background-image: url('../public/check.svg');
+}
+
+.form.correct .mainInput::placeholder {
+  color: transparent;
 }
 
 .mainInput {
@@ -278,11 +290,11 @@
 
 .form.visible, .question.visible {
   opacity: 1;
-  transition: opacity 4s cubic-bezier(0, 1.45, 1, 1);
+  transition: opacity 2s cubic-bezier(0, 1.45, 1, 1);
 }
 
-.form {
-  transition-delay: 2s;
+.form.visible {
+  transition: opacity 0.3s linear;
 }
 
 
