@@ -9,7 +9,7 @@ import CheckIcon from '@/components/CheckIcon'
 import Timeline from '@/components/Timeline'
 
 const exo = Exo_2({ 
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600'],
   subsets: ['latin']
  })
 
