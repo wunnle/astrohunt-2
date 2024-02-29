@@ -19,7 +19,7 @@ const steps = [
     year: 2450,
     yearText: '24??',
     event: "Terraforming Mars",
-    question: `What is the target temperature to make Mars habitable?`,
+    question: `What is the minimum and temperature required to make Mars habitable?`,
     answerType: 'text',
     answers: [
       '8',
@@ -28,7 +28,7 @@ const steps = [
       '8 degrees celsius',
       '8°C'
     ],
-    placeholder: 'Tempratures are going up, Deimos is going down...'
+    placeholder: 'Interview question #8 of Kelvinist Party.'
   },
   {
     type: 'question',
@@ -43,7 +43,7 @@ const steps = [
       'himself',
       'Himself'
     ],
-    placeholder: 'İki kelime, hayli yerli...'
+    placeholder: 'Lou Ji, I am your wallbreaker...'
   },
   {
     type: 'question',
@@ -68,14 +68,14 @@ const steps = [
       'hey, bob',
       'hey, Bob',
     ],
-    placeholder: 'Based on a tv show, based on a tv show...'
+    placeholder: 'A tv show, within a tv show...'
   },
   {
     type: 'question',
     year: 1967,
     yearText: '1967',
     event: "Kutná Hora",
-    question: 'Built from the 14th to the 19th century, this building in Kutná Hora  blends late Gothic and Renaissance architectural styles. What is its name?',
+    question: "Built from the 14th to the 19th century, this Kutná Hora building combines Gothic and Renaissance styles. What's its name?",
     answerType: 'text',
     answers: [
       "St. Barbara's Church",
@@ -94,7 +94,7 @@ const steps = [
     type: 'question',
     year: 1770,
     yearText: '1770',
-    question: "What is the name of the society where thinkers and industrialists regularly gathered in Birmingham under the full moon during the Industrial Revolution?",
+    question: "What is the name of the society where thinkers and industrialists regularly met in Birmingham under the full moon during the Industrial Revolution?",
     event: "Brass: Birmingham",
     answerType: 'text',
     answers: [
@@ -105,7 +105,7 @@ const steps = [
       'The Lunar Society',
       'the lunar society'
     ],
-    placeholder: 'Two characters from the game in the society...'
+    placeholder: 'Two characters from the game are part of this society...'
   },
   {
     type: 'question',
@@ -118,9 +118,13 @@ const steps = [
       "Silk Road",
       "silk road",
       "Silk",
-      "silk"
+      "silk",
+      "The Silk Road",
+      "the silk road",
+      "silkroad",
+      "Silkroad"
     ],
-    placeholder: 'The longest road...'
+    placeholder: 'Appian Way is a good guess, but not the right one...'
   },
   { 
     type: 'notification',
@@ -158,7 +162,6 @@ export default function Home() {
 
     
     mainInputRef.current?.blur();
-    //setFormClassName(styles.invisible);
     setFormClassName(styles.correct)
     setQuestionClassName(styles.invisible);
     audio.currentTime = 0.58
