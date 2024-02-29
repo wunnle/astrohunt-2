@@ -68,7 +68,7 @@ const steps = [
       'hey, bob',
       'hey, Bob',
     ],
-    placeholder: 'A tv show, within a tv show...'
+    placeholder: 'From a tv show, within a tv show...'
   },
   {
     type: 'question',
