@@ -1,9 +1,15 @@
 @keyframes timeline {
   0% {
     border: 2px solid rgba(255, 255, 255, 0);
+    opacity: 0.4;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0);
+    transform: translateY(-20px);
   }
   100% {
     border: 2px solid rgba(255, 255, 255, 1);
+    opacity: 1;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(0);
   }
 }
 
@@ -22,7 +28,8 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  animation: timeline 1.5s;
+  animation: timeline 0.8s;
+  box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
 }
 
 .step {
@@ -73,11 +80,15 @@
 }
 
 @keyframes verticalGrow {
-  from {
+  0% {
     height: 0%;
     opacity: 0.4;
   }
-  to {
+  20% {
+    height: 5%;
+    opacity: 1;
+  }
+  100% {
     height: 40%;
     opacity: 1;
   }

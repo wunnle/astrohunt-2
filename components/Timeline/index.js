@@ -62,7 +62,7 @@ const Timeline = ({ steps, activeStep }) => {
         <Step key={index} {...step} nextStepYear={[...steps].reverse()[index + 1]?.year} 
         isVisible={isInitiated ? step.year >= activeStepYear : false}
         isActive={isInitiated ? step.year === activeStepYear : false} 
-        animationDelay={0.4 + (index * 0.3)} />
+        animationDelay={0 + (index * 0.3)} />
       ))}
     </div>
   );

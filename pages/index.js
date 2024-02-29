@@ -150,7 +150,7 @@ export default function Home() {
       setFormClassName(styles.visible);
       setQuestionClassName(styles.visible);
       mainInputRef.current?.focus();
-    }, 3000)
+    }, 5000)
   }, [])
 
 
@@ -269,7 +269,7 @@ export default function Home() {
         <footer className={styles.footer}>
           <AstroHuntLogo className={styles.logo} />
           <div className={[styles.footerInner, exo.className].join(' ')}>
-          Coded with ♥ for Başak - 2023 
+          Coded with ♥ for Başak - 2024
           </div>
           
           </footer>
