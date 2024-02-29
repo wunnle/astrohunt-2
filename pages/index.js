@@ -28,7 +28,7 @@ const steps = [
       '8 degrees celsius',
       '8°C'
     ],
-    placeholder: 'Seteshang im "statión", sa-sa ke?'
+    placeholder: 'Tempratures are going up, Deimos is going down...'
   },
   {
     type: 'question',
@@ -129,7 +129,6 @@ const steps = [
     yearText: '????',
     title: `Good job! You've unlocked your gift`,
     description: 'Find it behind the Terraforming Mars box',
-    action: 'goToNextStep',
     icon: SurpriseIcon
   }
 ]

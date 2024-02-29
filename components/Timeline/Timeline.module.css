@@ -30,6 +30,30 @@
   margin-top: 20px;
   animation: timeline 0.8s;
   box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  max-width: 1900px;
+}
+
+@keyframes timelineInner {
+  0% {
+    width: 1%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.timelineInner {
+  display: flex;
+  width: 1%;
+  height: 100%;
+  animation: timelineInner 1.2s;
+  animation-fill-mode: forwards;
+  /* animation-delay: 1s; */
+  height: 50px;
+  /* background-color: yellow; */
+  /* overflow: hidden; */
+  padding: 0 20px;
 }
 
 .step {
@@ -66,7 +90,6 @@
 }
 
 .stepText {
-  /* border-left: 2px solid white; */
   padding-left: 12px;
   opacity: 0;
   transition: opacity 0.1s;
@@ -90,18 +113,32 @@
     opacity: 1;
   }
   100% {
-    height: 40%;
+    height: 50%;
     opacity: 1;
   }
 }
 
 @keyframes verticalGrow2 {
   from {
-    height: 40%;
+    height: 50%;
   }
   to {
-    height: 100%;
+    height: 90%;
   }
+}
+
+.stepCircle {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: #8d8d8d;
+  margin-left: -4px;
+
+  transform: scale(0.7);
+  transform-origin: top center;
+  transition: transform 0.6s, background-color 0.6s;
+  transition-delay: 0.8s;
 }
 
 .stepVerticalLine {
@@ -113,14 +150,25 @@
   left: 0;
   margin-bottom: 1px;
   transform: translateX(-50%);
-  animation: verticalGrow 1.2s;
+  animation: verticalGrow 0.7s;
   animation-fill-mode: forwards;
 }
 
 .stepVisible .stepVerticalLine {
-  height: 40%;
-  animation: verticalGrow2 1.2s;
-  animation-fill-mode: forwards;
+  height: 50%;
+  animation: verticalGrow2 0.8s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards; 
+}
+
+.stepVisible .stepCircle {
+  transform: scale(1);
+  
+}
+
+.stepActive .stepCircle {
+  background-color: white;
+  filter: drop-shadow(0 0 0.12rem #ffffff70);
 }
 
 .stepYear {

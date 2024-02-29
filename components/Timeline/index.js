@@ -33,7 +33,9 @@ const Step = ({ event, year, yearText, nextStepYear, isVisible, isActive, animat
       }}
     >
       <div className={styles.stepVerticalLine} 
-      style={{ animationDelay: `${animationDelay}s` }}></div>
+      style={{ animationDelay: `${animationDelay}s` }}>
+        <div className={styles.stepCircle}></div>
+      </div>
       <div className={styles.stepText}>
         <p className={[styles.stepYear, exo.className].join(' ')}>{yearText}</p>
         <p className={[styles.stepTitle, exo.className].join(' ')
@@ -58,12 +60,14 @@ const Timeline = ({ steps, activeStep }) => {
 
   return (
     <div className={styles.timeline}>
+      <div className={styles.timelineInner}>
       {[...steps].reverse().map((step, index) => (
         <Step key={index} {...step} nextStepYear={[...steps].reverse()[index + 1]?.year} 
         isVisible={isInitiated ? step.year >= activeStepYear : false}
         isActive={isInitiated ? step.year === activeStepYear : false} 
-        animationDelay={0 + (index * 0.3)} />
-      ))}
+        animationDelay={0 + (index * 0.25)} />
+        ))}
+      </div>
     </div>
   );
 }
