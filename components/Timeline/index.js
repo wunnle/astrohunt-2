@@ -61,12 +61,15 @@ const Timeline = ({ steps, activeStep }) => {
   return (
     <div className={styles.timeline}>
       <div className={styles.timelineInner}>
-      {[...steps].reverse().map((step, index) => (
-        <Step key={index} {...step} nextStepYear={[...steps].reverse()[index + 1]?.year} 
-        isVisible={isInitiated ? step.year >= activeStepYear : false}
-        isActive={isInitiated ? step.year === activeStepYear : false} 
-        animationDelay={0 + (index * 0.25)} />
-        ))}
+      {[...steps]
+        .reverse()
+        .filter(step => step.type !== "dialog")
+        .map((step, index) => (
+          <Step key={index} {...step} nextStepYear={[...steps].reverse()[index + 1]?.year} 
+          isVisible={isInitiated ? step.year >= activeStepYear : false}
+          isActive={isInitiated ? step.year === activeStepYear : false} 
+          animationDelay={0 + (index * 0.25)} />
+      ))}
       </div>
     </div>
   );

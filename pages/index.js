@@ -22,12 +22,16 @@ const steps = [
     question: `What's the name of the group of canyons on Mars which will inpire the name of one of biggest cities on the planet, and translates to "the labyrinth of the night"?`,
     answerType: 'text',
     answers: [
-      "Noctis Labyrinthus",
-      "noctis labyrinthus",
-      "Noctis labyrinthus",
-      "noctis Labyrinthus"
+      "Noctis Labyrinthus"
     ],
-    placeholder: `Answer can be found in one of the boards...`
+    placeholder: `Answer can be found on one of the boards...`
+  },
+  {
+    type: 'dialog',
+    year: 2450,
+    imageUrl: '/noctis.png',
+    description: `Placed the city on the reserved area.`,
+    buttonText: 'Next!'
   },
   {
     type: 'question',
@@ -70,6 +74,12 @@ const steps = [
     placeholder: 'From a tv show, within a tv show...'
   },
   {
+    type: 'dialog',
+    year: 1974,
+    imageUrl: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemVteWhseGh6cmw2b3Awdzlkczk5aTJpMHJyZnNlMGRvbmJ4cndybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/43PS5W9xIgv5ACiFYv/giphy.gif',
+    buttonText: 'Hi Bob!'
+  },
+  {
     type: 'question',
     year: 1967,
     yearText: '1967',
@@ -104,7 +114,14 @@ const steps = [
       'The Lunar Society',
       'the lunar society'
     ],
-    placeholder: 'Two characters from the game are part of this society...'
+    placeholder: 'Two members of this society are mentioned in the game...'
+  },
+  {
+    type: 'dialog',
+    year: 1770,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Statue_of_Boulton%2C_Watt_%26_Murdoch_-_Birmingham_-_England_-_01_%2828227285055%29.jpg',
+    description: 'Golden boys statue in Birmingham: Matthew Boulton, James Watt and William Murdoch are discussing steam engine plans.',
+    buttonText: 'Next! 🚂'
   },
   {
     type: 'question',
@@ -130,8 +147,8 @@ const steps = [
     year: 300,
     event: "???",
     yearText: '????',
-    title: `Good job! You've unlocked your gift`,
-    description: 'Find it behind the Terraforming Mars box',
+    title: `Yay! You've unlocked the next step!`,
+    description: 'Find your gift in the Catan box.',
     icon: SurpriseIcon
   }
 ]
@@ -157,14 +174,15 @@ export default function Home() {
 
 
   function switchToNextQuestion() {
-    var audio = new Audio('/audio/new.mp3');
-
-    
     mainInputRef.current?.blur();
     setFormClassName(styles.correct)
     setQuestionClassName(styles.invisible);
-    audio.currentTime = 0.58
-    audio.play();
+
+    if(steps[activeStep].type === 'question') {
+      const audio = new Audio('/audio/new.mp3');
+      audio.currentTime = 0.58
+      audio.play();
+    }
 
     setTimeout(() => {
       setActiveStep(activeStep + 1);
@@ -194,17 +212,8 @@ export default function Home() {
     e.preventDefault();
     const answer = mainInputRef.current.value;
 
-    if (steps[activeStep].answerType === 'number') {
-      const answerNumber = Number(answer);
-      if (answerNumber >= steps[activeStep].answerRange.min && answerNumber <= steps[activeStep].answerRange.max) {
-        switchToNextQuestion();
-      } else {
-        showErrorMessage();
-      }
-    }
-
     if(steps[activeStep].answerType === 'text') {
-      if(steps[activeStep].answers.includes(answer.trim())) {
+      if(steps[activeStep].answers.map(a => a.toLowerCase()).includes(answer.toLowerCase().trim())) {
         switchToNextQuestion();
       } else {
         showErrorMessage();
@@ -242,6 +251,22 @@ export default function Home() {
             <button className={styles.submitButton}></button>
           </form>
         </div>)}
+        {steps[activeStep].type === 'dialog' && (
+          <div className={styles.center}>
+            <div className={[styles.dialog, questionClassName].join(' ')}>
+              <div className={styles.dialogImage}>
+                <img src={steps[activeStep].imageUrl} alt={steps[activeStep].title} />
+              </div>
+              {(steps[activeStep].title || steps[activeStep].description) && (
+                <div className={styles.dialogInner}>
+                  {steps[activeStep].title && <h1 className={[styles.dialogTitle, exo.className].join(' ')}>{steps[activeStep].title}</h1>}
+                  <p className={[styles.dialogText].join(' ')}>{steps[activeStep].description}</p>
+                </div>
+              )}
+            </div>
+            <button onClick={switchToNextQuestion} className={[styles.dialogNextButton, exo.className].join(' ')}>{steps[activeStep].buttonText}</button>
+          </div>
+        )}
         {steps[activeStep].type === 'notification' && (
           <div className={styles.center}>
             <div className={styles.notification}>
