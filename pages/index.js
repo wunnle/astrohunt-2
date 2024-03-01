@@ -19,16 +19,15 @@ const steps = [
     year: 2450,
     yearText: '24??',
     event: "Terraforming Mars",
-    question: `What is the minimum temperature required to make Mars habitable?`,
+    question: `What's the name of the group of canyons on Mars which will inpire the name of one of biggest cities on the planet, and translates to "the labyrinth of the night"?`,
     answerType: 'text',
     answers: [
-      '8',
-      '+8',
-      '8 degrees',
-      '8 degrees celsius',
-      '8°C'
+      "Noctis Labyrinthus",
+      "noctis labyrinthus",
+      "Noctis labyrinthus",
+      "noctis Labyrinthus"
     ],
-    placeholder: 'Interview question #1 of Kelvinist Party.'
+    placeholder: `Answer can be found in one of the boards...`
   },
   {
     type: 'question',
